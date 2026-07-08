@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Case study da LeadFlow - CRM: arquitetura, desafios técnicos e resultados." />
+  <title>Case Study - LeadFlow - CRM | Antonio Cossa</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.1/fonts/remixicon.css" rel="stylesheet" />
+</head>
+
+<body>
+  <!-- ============================================================= -->
+  <!-- HEADER / NAV                                                   -->
+  <!-- ============================================================= -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../index.html">Antonio&nbsp;Cossa</a>
+      <nav class="site-nav" aria-label="Seções do case study">
+        <a href="#overview">Visão geral</a>
+        <a href="#features">Funcionalidades</a>
+        <a href="#architecture">Arquitetura</a>
+        <a href="#results">Resultados</a>
+      </nav>
+      <a class="btn btn--ghost btn--sm" href="../index.html#portfolio">← Portfólio</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============================================================= -->
+    <!-- HERO                                                          -->
+    <!-- ============================================================= -->
+    <section class="hero" id="top">
+      <div class="container hero__grid">
+        <!-- Coluna de texto -->
+        <div class="hero__content reveal">
+          <span class="eyebrow">Case Study · LeadFlow</span>
+          <h1 class="hero__title">LeadFlow<span class="dot">.</span></h1>
+          <p class="hero__lead">
+            Plataforma SaaS para rastreamento, automação e otimização de campanhas,
+            conectando anúncios, atendimento e
+            inteligência
+            artificial em um único fluxo operacional.
+          </p>
+
+          <!-- Meta informações do projeto -->
+          <dl class="hero__meta">
+            <div>
+              <dt>Status</dt>
+              <dd><span class="status status--live">● Em produção</span></dd>
+            </div>
+            <div>
+              <dt>Categoria</dt>
+              <dd>Web App · SaaS</dd>
+            </div>
+            <div>
+              <dt>Meu papel</dt>
+              <dd>Desenvolvedor Full Stack</dd>
+            </div>
+            <div>
+              <dt>Ano</dt>
+              <dd>2025</dd>
+            </div>
+          </dl>
+
+          <!-- Stack resumida -->
+          <ul class="hero__stack" aria-label="Stack principal">
+            <li>Next</li>
+            <li>Node.js</li>
+            <li>PostgreSQL</li>
+            <li>Redis</li>
+            <li>OpenAI</li>
+          </ul>
+
+          <!-- Ações -->
+          <div class="hero__actions">
+            <a class="btn btn--primary"
+              onclick="showPopup('O acesso à produção e ao codigo deste projeto é exclusivo à empresa Brain Marketing, bem como aos seus clientes!')"
+              target="_blank" rel="noopener">
+              Ver Projeto
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M7 17 17 7M17 7H8M17 7v9" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </a>
+            <a class="btn btn--ghost"
+              onclick="showPopup('O acesso ao codigo deste projeto é exclusivo à empresa Brain Marketing!')"
+              target="_blank" rel="noopener">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.09.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.45-1.18-1.11-1.49-1.11-1.49-.91-.63.07-.62.07-.62 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.36-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05a9.36 9.36 0 0 1 5 0c1.91-1.32 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.81-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.59.69.49A10.02 10.02 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z" />
+              </svg>
+              GitHub
+            </a>
+            <a class="btn btn--ghost" href="/#portfolio">Voltar ao Portfólio</a>
+          </div>
+        </div>
+
+        <!-- Coluna do mockup (browser window desenhado em HTML/CSS) -->
+        <div class="hero__visual reveal">
+          <figure class="mockup" aria-label="Mockup do painel da plataforma">
+            <div class="mockup__bar">
+              <span class="mockup__dot"></span>
+              <span class="mockup__dot"></span>
+              <span class="mockup__dot"></span>
+              <span class="mockup__url">app.leadflow.io</span>
+            </div>
+            <div class="mockup__body">
+              <!-- Mini dashboard fake, tudo em CSS -->
+              <div class="mock-side">
+                <span class="mock-logo"></span>
+                <span class="mock-nav"></span>
+                <span class="mock-nav"></span>
+                <span class="mock-nav is-active"></span>
+                <span class="mock-nav"></span>
+              </div>
+              <div class="mock-main">
+                <div class="mock-cards">
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                  <div class="mock-card"></div>
+                </div>
+                <div class="mock-chart">
+                  <span style="height:40%"></span>
+                  <span style="height:70%"></span>
+                  <span style="height:55%"></span>
+                  <span style="height:85%"></span>
+                  <span style="height:60%"></span>
+                  <span style="height:95%"></span>
+                  <span style="height:75%"></span>
+                </div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- VISÃO GERAL                                                   -->
+    <!-- ============================================================= -->
+    <section class="section" id="overview">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">01 - Visão geral</span>
+          <h2 class="section__title">Uma plataforma capaz de trazer luz aos resultados do trafego pago.</h2>
+        </header>
+        <div class="overview reveal">
+          <p class="lead">
+            <strong> "Qual campanha esta gerando resultado ?" </strong> <br>
+            Empresas investem diariamente em mídia paga, mas poucas conseguem responder com precisão qual campanha
+            realmente gera
+            receita. O LeadFlow foi desenvolvido para conectar marketing, atendimento e vendas, permitindo acompanhar
+            toda a jornada
+            do lead, automatizar processos e enviar conversões novamente às plataformas de anúncios para otimização
+            contínua.
+          </p>
+
+          <div class="overview__grid">
+            <article class="info-card">
+              <h3>Objetivo</h3>
+              <p>Trazer clareza sobre qual o desempenho das campanhas possibilitando saber quais realmente geram
+                retorno, bem como otimizalas de forma automatica.</p>
+            </article>
+            <article class="info-card">
+              <h3>Contexto</h3>
+              <p>Agências que gerenciam muitas campanhas não têm clareza do desempenho a curto prazo,
+                o que leva a decisões erradas e custos evitáveis por falta de monitoramento preciso.</p>
+            </article>
+            <article class="info-card">
+              <h3>Problema resolvido</h3>
+              <p>Consolidação de dados e ações em tempo real, com automações
+                inteligentes que economizam horas de trabalho manual todos os
+                dias.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- O PROBLEMA                                                    -->
+    <!-- ============================================================= -->
+    <section class="section" id="problem">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">02 - O problema</span>
+          <h2 class="section__title">Leads sem rastreabilidade e decisões baseadas em suposições</h2>
+        </header>
+
+        <div class="split reveal">
+
+          <article class="info-card">
+            <h3>Problema encontrado</h3>
+            <p>
+              As empresas investiam diariamente em campanhas no Meta Ads e Google
+              Ads, mas não conseguiam identificar quais anúncios realmente geravam
+              oportunidades e vendas. Os dados ficavam distribuídos entre CRM,
+              WhatsApp, planilhas e plataformas de anúncios, dificultando a análise
+              completa da jornada do cliente.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h3>Desafios</h3>
+            <p>
+              Rastrear toda a jornada do lead, desde o clique no anúncio até a
+              conversão, sincronizando eventos entre WhatsApp, Meta Ads, Google Ads
+              e OpenAI em tempo real. Além disso, garantir isolamento entre empresas,
+              automações confiáveis e processamento de grandes volumes de dados.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <h3>Limitações existentes</h3>
+            <p>
+              As soluções disponíveis exigiam diversas ferramentas independentes,
+              pouca flexibilidade para automações personalizadas e não permitiam
+              enviar eventos de conversão automaticamente para otimizar campanhas de
+              mídia paga, aumentando o custo de aquisição de clientes.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- A SOLUÇÃO                                                     -->
+    <!-- ============================================================= -->
+    <section class="section" id="solution">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">03 - A solução</span>
+          <h2 class="section__title">Uma base multi-tenant com automações de verdade</h2>
+          <p>
+            <br>
+            O LeadFlow centraliza todo o ciclo comercial em uma única plataforma. Os leads são capturados,
+            identificados,
+            distribuídos automaticamente, acompanhados durante o atendimento no WhatsApp e, quando ocorre uma conversão,
+            o evento é
+            enviado de volta ao Meta Ads e Google Ads para otimização das campanhas.
+          </p>
+        </header>
+        <div class="split reveal">
+          <article class="info-card">
+            <h3>Como foi construída</h3>
+            <p>API modular em Node.js com isolamento por empresa no banco,
+              front-end em Next consumindo dados em tempo real e uma camada de
+              automações orientada a eventos.</p>
+          </article>
+          <article class="info-card">
+            <h3>Estratégia utilizada</h3>
+            <p>Arquitetura orientada a integrações: cada serviço externo (IA,
+              WhatsApp, mídia paga) vive atrás de um adaptador, o que facilita
+              manutenção e adição de novos canais.</p>
+          </article>
+          <article class="info-card">
+            <h3>Benefícios alcançados</h3>
+            <p>Menos trabalho manual, respostas mais rápidas ao cliente e uma
+              visão consolidada de performance por empresa - tudo em um só
+              lugar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- FUNCIONALIDADES                                               -->
+    <!-- ============================================================= -->
+    <section class="section" id="features">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">04 - Funcionalidades</span>
+          <h2 class="section__title">O que a plataforma entrega</h2>
+        </header>
+        <div class="feature-grid">
+          <!-- Cada card: ícone SVG inline + nome + descrição -->
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <path d="M21 11.5a8.38 8.38 0 0 1-9 8.35 8.5 8.5 0 0 1-3.8-.9L3 21l1.05-4.2A8.5 8.5 0 1 1 21 11.5Z"
+                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>Atendimento WhatsApp</h3>
+            <p>Central de conversas integrada à API oficial, com histórico por
+              cliente e distribuição entre atendentes.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <path d="M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M3 12h3m12 0h3M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1"
+                  stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                <circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </span>
+            <h3>Automações</h3>
+            <p>Fluxos orientados a eventos que disparam mensagens, tarefas e
+              atualizações sem intervenção manual.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <path d="M4 19V5m0 14h16M8 15l3-4 3 3 5-7" stroke="currentColor" stroke-width="1.8"
+                  stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>Gestão de anúncios</h3>
+            <p>Métricas de Meta Ads e Google Ads reunidas em relatórios claros e
+              comparáveis por campanha.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <path
+                  d="M12 2a4 4 0 0 1 4 4c0 1 2 1.5 2 4 0 3-2 4-2 6a4 4 0 0 1-8 0c0-2-2-3-2-6 0-2.5 2-3 2-4a4 4 0 0 1 4-4Z"
+                  stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>IA integrada</h3>
+            <p>Respostas sugeridas e classificação de mensagens usando a API da
+              OpenAI para agilizar o atendimento.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" />
+                <path d="M3 9h18M8 4v16" stroke="currentColor" stroke-width="1.8" />
+              </svg>
+            </span>
+            <h3>Multi-empresa</h3>
+            <p>Isolamento total de dados por empresa, com permissões e paineis
+              independentes para cada cliente.</p>
+          </article>
+
+          <article class="feature-card reveal">
+            <span class="feature-card__icon">
+              <svg viewBox="0 0 24 24" fill="none" width="24" height="24" aria-hidden="true">
+                <path d="M12 3 4 7v5c0 5 3.4 7.7 8 9 4.6-1.3 8-4 8-9V7l-8-4Z" stroke="currentColor" stroke-width="1.8"
+                  stroke-linejoin="round" />
+                <path d="m9 12 2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </span>
+            <h3>Segurança</h3>
+            <p>Autenticação por token, controle de acesso por papel e trilhas de
+              auditoria das ações sensíveis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- STACK TECNOLÓGICA                                             -->
+    <!-- ============================================================= -->
+    <section class="section" id="stack">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">05 - Stack tecnológica</span>
+          <h2 class="section__title">Ferramentas utilizadas</h2>
+        </header>
+        <div class="stack reveal">
+          <div class="stack__group">
+            <h3>Frontend</h3>
+            <ul class="badges">
+              <li>Next</li>
+              <li>JavaScript</li>
+              <li>HTML5</li>
+              <li>CSS3</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <h3>Backend</h3>
+            <ul class="badges">
+              <li>Node.js</li>
+              <li>Express</li>
+              <li>REST API</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <h3>Banco de dados</h3>
+            <ul class="badges">
+              <li>PostgreSQL</li>
+              <li>MongoDB</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <h3>Infraestrutura</h3>
+            <ul class="badges">
+              <li>Redis</li>
+              <li>Linux</li>
+              <li>Nginx</li>
+            </ul>
+          </div>
+          <div class="stack__group">
+            <h3>Integrações</h3>
+            <ul class="badges">
+              <li>OpenAI</li>
+              <li>WhatsApp API</li>
+              <li>Meta Ads</li>
+              <li>Google Ads</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- ARQUITETURA (diagrama só com HTML/CSS)                        -->
+    <!-- ============================================================= -->
+    <section class="section" id="architecture">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">06 - Arquitetura</span>
+          <h2 class="section__title">Como as peças se conectam</h2>
+        </header>
+
+        <div class="diagram reveal" aria-label="Diagrama de arquitetura">
+
+          <!-- Ramificação para os serviços externos -->
+          <div class="node-branch">
+            <div class="node node--soft">Meta Ads</div>
+            <div class="node node--soft">Google Ads</div>
+            <div class="node node--soft">Landing Page</div>
+          </div>
+          <span class="arrow" aria-hidden="true"></span>
+
+          <div class="node node--accent">Whatsapp</div>
+          <span class="arrow" aria-hidden="true"></span>
+          <div class="node ">Lead Tracking (CRM)</div>
+          <span class="arrow" aria-hidden="true"></span>
+          <div class="node node--accent">Qualificação automatica (OpenAI)</div>
+          <span class="arrow" aria-hidden="true"></span>
+          <div class="node">Conversão</div>
+          <span class="arrow" aria-hidden="true"></span>
+
+          <!-- Ramificação para os serviços externos -->
+          <div class="node-branch">
+            <div class="node node--soft">Meta Ads</div>
+            <div class="node node--soft">Google Ads</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- PROCESSO DE DESENVOLVIMENTO (timeline vertical)               -->
+    <!-- ============================================================= -->
+    <section class="section" id="process">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">07 - Processo</span>
+          <h2 class="section__title">Do planejamento ao deploy</h2>
+        </header>
+
+        <ol class="timeline">
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Planejamento</h3>
+              <p>Levantamento de requisitos, mapeamento de fluxos e definição do
+                escopo multi-empresa.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Arquitetura</h3>
+              <p>Modelagem do banco multi-tenant e desenho da camada de
+                integrações desacoplada.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Desenvolvimento</h3>
+              <p>Construção da API, do painel em Next e do motor de
+                automações.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Integrações</h3>
+              <p>Conexão com OpenAI, WhatsApp, Meta Ads e Google Ads através de
+                adaptadores.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Testes</h3>
+              <p>Validação de fluxos críticos, testes de carga e ajustes de
+                performance.</p>
+            </div>
+          </li>
+          <li class="timeline__item reveal">
+            <div class="timeline__marker"></div>
+            <div class="timeline__content">
+              <h3>Deploy</h3>
+              <p>Publicação em servidor Linux com
+                Nginx.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- DESAFIOS TÉCNICOS                                             -->
+    <!-- ============================================================= -->
+    <section class="section" id="challenges">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">08 - Desafios técnicos</span>
+          <h2 class="section__title">Os problemas mais difíceis</h2>
+        </header>
+
+        <div class="challenge-grid">
+          <article class="challenge reveal">
+            <h3>Isolamento multi-tenant</h3>
+            <div class="challenge__row"><span>Problema</span>
+              <p>Garantir que os dados de uma empresa nunca vazassem para outra.</p>
+            </div>
+            <div class="challenge__row"><span>Solução</span>
+              <p>Escopo por <code>company_id</code> em toda a camada de acesso e
+                middlewares de verificação.</p>
+            </div>
+            <div class="challenge__row"><span>Resultado</span>
+              <p>Zero incidentes de vazamento e base pronta para escalar por
+                cliente.</p>
+            </div>
+          </article>
+
+          <article class="challenge reveal">
+            <h3>Sincronização de APIs externas</h3>
+            <div class="challenge__row"><span>Problema</span>
+              <p>Limites de taxa e formatos diferentes entre WhatsApp, Meta e
+                Google.</p>
+            </div>
+            <div class="challenge__row"><span>Solução</span>
+              <p>Filas com retentativa e adaptadores que normalizam os dados em
+                um formato interno único.</p>
+            </div>
+            <div class="challenge__row"><span>Resultado</span>
+              <p>Integrações estáveis e fáceis de estender para novos canais.</p>
+            </div>
+          </article>
+
+          <article class="challenge reveal">
+            <h3>Performance sob carga</h3>
+            <div class="challenge__row"><span>Problema</span>
+              <p>Relatórios pesados deixavam o painel lento em horários de pico.</p>
+            </div>
+            <div class="challenge__row"><span>Solução</span>
+              <p>Cache de consultas, índices no banco e paginação server-side.</p>
+            </div>
+            <div class="challenge__row"><span>Resultado</span>
+              <p>Tempo de resposta reduzido drasticamente mesmo com mais
+                empresas ativas.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- GALERIA (abre modal com JS puro)                              -->
+    <!-- ============================================================= -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">09 - Galeria</span>
+          <h2 class="section__title">Telas do sistema</h2>
+        </header>
+
+        <!--
+          As imagens usam placeholders SVG embutidos (data URI) para manter a
+          página 100% offline. Troque o src por screenshots reais quando quiser.
+          loading="lazy" ativa o carregamento sob demanda (lazy loading nativo).
+        -->
+        <div class="gallery reveal">
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela do painel - Dashboard" src="./assets/crm_main.png" />
+            <span class="gallery__cap">Dashboard</span>
+          </button>
+
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela de atendimento" src="./assets/kanban.png" />
+            <span class="gallery__cap">Atendimento</span>
+          </button>
+
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela de relatórios"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='40' y='300' width='90' height='160' rx='8' fill='%23e9615e' opacity='0.7'/%3E%3Crect x='150' y='220' width='90' height='240' rx='8' fill='%23ec9956' opacity='0.7'/%3E%3Crect x='260' y='260' width='90' height='200' rx='8' fill='%23e9615e' opacity='0.7'/%3E%3Crect x='370' y='160' width='90' height='300' rx='8' fill='%23ec9956' opacity='0.7'/%3E%3Crect x='480' y='210' width='90' height='250' rx='8' fill='%23e9615e' opacity='0.7'/%3E%3Crect x='590' y='120' width='90' height='340' rx='8' fill='%23ec9956' opacity='0.7'/%3E%3C/svg%3E" />
+            <span class="gallery__cap">Relatórios</span>
+          </button>
+
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela de automações"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='80' y='210' width='150' height='80' rx='14' fill='%231e1e24' stroke='%23e9615e' stroke-width='2'/%3E%3Crect x='330' y='120' width='150' height='80' rx='14' fill='%231e1e24' stroke='%23ec9956' stroke-width='2'/%3E%3Crect x='330' y='300' width='150' height='80' rx='14' fill='%231e1e24' stroke='%23ec9956' stroke-width='2'/%3E%3Crect x='580' y='210' width='150' height='80' rx='14' fill='%231e1e24' stroke='%23e9615e' stroke-width='2'/%3E%3Cpath d='M230 250 H330 M480 160 H580 M480 340 H580' stroke='%23555' stroke-width='2'/%3E%3C/svg%3E" />
+            <span class="gallery__cap">Automações</span>
+          </button>
+
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela de configurações"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='60' y='60' width='680' height='60' rx='12' fill='%231e1e24'/%3E%3Crect x='60' y='150' width='680' height='60' rx='12' fill='%231e1e24'/%3E%3Crect x='60' y='240' width='680' height='60' rx='12' fill='%231e1e24'/%3E%3Crect x='640' y='260' width='70' height='20' rx='10' fill='%23e9615e'/%3E%3Crect x='60' y='330' width='680' height='60' rx='12' fill='%231e1e24'/%3E%3C/svg%3E" />
+            <span class="gallery__cap">Configurações</span>
+          </button>
+
+          <button class="gallery__item" type="button">
+            <img loading="lazy" alt="Tela de campanhas"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='500'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Ccircle cx='250' cy='250' r='140' fill='none' stroke='%231e1e24' stroke-width='40'/%3E%3Ccircle cx='250' cy='250' r='140' fill='none' stroke='%23e9615e' stroke-width='40' stroke-dasharray='560' stroke-dashoffset='230' transform='rotate(-90 250 250)'/%3E%3Crect x='470' y='150' width='260' height='30' rx='15' fill='%231e1e24'/%3E%3Crect x='470' y='230' width='200' height='30' rx='15' fill='%231e1e24'/%3E%3Crect x='470' y='310' width='230' height='30' rx='15' fill='%231e1e24'/%3E%3C/svg%3E" />
+            <span class="gallery__cap">Campanhas</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- RESULTADOS (métricas)                                         -->
+    <!-- ============================================================= -->
+    <section class="section" id="results">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">10 - Resultados</span>
+          <h2 class="section__title">Impacto entregue</h2>
+        </header>
+        <div class="metrics">
+          <article class="metric reveal">
+            <strong><i class="ri-organization-chart"></i></strong>
+            <span>Centralização de dados</span>
+          </article>
+          <article class="metric reveal">
+            <strong>+70%</strong>
+            <span>Tarefas automatizadas</span>
+          </article>
+          <article class="metric reveal">
+            <strong><i class="ri-target-fill"></i></strong>
+            <span>Decisão baseada em dados reais</span>
+          </article>
+          <article class="metric reveal">
+            <strong><i class="ri-eye-line"></i></strong>
+            <span>Rastreamento ponta a ponta</span>
+          </article>
+          <article class="metric reveal">
+            <strong><i class="ri-hotel-line"></i></i></strong>
+            <span>Escalável para múltiplas empresas</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- MEU PAPEL                                                     -->
+    <!-- ============================================================= -->
+    <section class="section" id="role">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">11 - Meu papel</span>
+          <h2 class="section__title">Responsabilidades no projeto</h2>
+        </header>
+        <div class="role-grid reveal">
+          <span class="role-chip">Arquitetura</span>
+          <span class="role-chip">Frontend</span>
+          <span class="role-chip">Backend</span>
+          <span class="role-chip">Banco de Dados</span>
+          <span class="role-chip">DevOps</span>
+          <span class="role-chip">Integrações</span>
+          <span class="role-chip">Deploy</span>
+          <span class="role-chip">Documentação</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- APRENDIZADOS                                                  -->
+    <!-- ============================================================= -->
+    <section class="section" id="learnings">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">12 - Aprendizados</span>
+          <h2 class="section__title">O que fica desse projeto</h2>
+        </header>
+        <blockquote class="quote reveal">
+          <p>
+            Este projeto reforçou a importância de desenvolver integrações desacopladas. Cada serviço externo foi
+            implementado por
+            meio de adaptadores independentes, permitindo substituir provedores ou adicionar novas integrações sem
+            impactar o
+            restante da aplicação. Também evidenciou a necessidade de arquitetar sistemas orientados a eventos para
+            garantir
+            confiabilidade em fluxosassíncronos.
+          </p>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ============================================================= -->
+    <!-- OUTROS PROJETOS                                               -->
+    <!-- ============================================================= -->
+    <!-- <section class="section" id="others">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">13 - Outros projetos</span>
+          <h2 class="section__title">Continue explorando</h2>
+        </header>
+        <div class="others-grid">
+          <article class="project-card reveal">
+            <img loading="lazy" alt="Projeto Bot de Automação"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='230' y='120' width='140' height='100' rx='16' fill='%231e1e24' stroke='%23e9615e' stroke-width='2'/%3E%3Ccircle cx='270' cy='165' r='10' fill='%23e9615e'/%3E%3Ccircle cx='330' cy='165' r='10' fill='%23e9615e'/%3E%3C/svg%3E" />
+            <div class="project-card__body">
+              <h3>Bot de Automação</h3>
+              <p class="project-card__cat">Automação</p>
+              <a class="btn btn--ghost btn--sm" href="#">Ver Projeto</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img loading="lazy" alt="Projeto Painel de Anúncios"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='120' y='200' width='60' height='100' rx='6' fill='%23ec9956'/%3E%3Crect x='210' y='150' width='60' height='150' rx='6' fill='%23e9615e'/%3E%3Crect x='300' y='180' width='60' height='120' rx='6' fill='%23ec9956'/%3E%3Crect x='390' y='120' width='60' height='180' rx='6' fill='%23e9615e'/%3E%3C/svg%3E" />
+            <div class="project-card__body">
+              <h3>Painel de Anúncios</h3>
+              <p class="project-card__cat">Dashboard</p>
+              <a class="btn btn--ghost btn--sm" href="#">Ver Projeto</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <img loading="lazy" alt="Projeto Site Institucional"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='360'%3E%3Crect width='100%25' height='100%25' fill='%23141418'/%3E%3Crect x='120' y='80' width='360' height='40' rx='8' fill='%231e1e24'/%3E%3Crect x='120' y='150' width='240' height='24' rx='8' fill='%232a2a32'/%3E%3Crect x='120' y='200' width='300' height='24' rx='8' fill='%232a2a32'/%3E%3Crect x='120' y='260' width='140' height='40' rx='20' fill='%23e9615e'/%3E%3C/svg%3E" />
+            <div class="project-card__body">
+              <h3>Site Institucional</h3>
+              <p class="project-card__cat">Website</p>
+              <a class="btn btn--ghost btn--sm" href="#">Ver Projeto</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section> -->
+  </main>
+
+  <!-- ============================================================= -->
+  <!-- FOOTER                                                        -->
+  <!-- ============================================================= -->
+  <footer class="site-footer">
+    <div class="container site-footer__inner">
+      <p>© <span id="year"></span> Antonio Cossa</p>
+      <a class="btn btn--ghost btn--sm" href="../index.html#portfolio">Voltar ao Portfólio</a>
+    </div>
+  </footer>
+
+  <!-- ============================================================= -->
+  <!-- MODAL / LIGHTBOX DA GALERIA                                   -->
+  <!-- ============================================================= -->
+  <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Imagem ampliada">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Fechar">&times;</button>
+    <img class="lightbox__img" id="lightboxImg" alt="" />
+  </div>
+
+  <script src="../script.js"></script>
+</body>
+
+</html>
